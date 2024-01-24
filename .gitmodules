@@ -1,0 +1,6 @@
+[submodule "Pose_Tracking"]
+	path = Pose_Tracking
+	url = git@github.com:SDP-Group-8/Pose_Tracking.git
+[submodule "DanceVision_App"]
+	path = DanceVision_App
+	url = git@github.com:SDP-Group-8/DanceVision_App.git
