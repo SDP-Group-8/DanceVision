@@ -4,3 +4,6 @@
 [submodule "DanceVision_App"]
 	path = DanceVision_App
 	url = git@github.com:SDP-Group-8/DanceVision_App.git
+[submodule "Robot_Controller"]
+	path = Robot_Controller
+	url = git@github.com:SDP-Group-8/Robot_Controller.git
