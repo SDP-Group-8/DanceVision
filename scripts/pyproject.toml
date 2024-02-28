@@ -6,9 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "dancevision_startup"
 version = "0.0.1"
 dependencies = [
-    "paramiko",
-    "pyopenssl==22.0.0",
-    "cryptography==38.0.0"
+    "paramiko"
 ]
 
 description = "Package for Pose Estimation"

@@ -1,16 +1,11 @@
-import argparse
+from typing import List
+from dancevision_startup.commands import build_command, run_command_in_session
 
-import paramiko
+SOURCE_CMD = "source /opt/ros/kinetic/setup.bash"
 
-from dancevision_startup.constants import AT_SUBNET
+def build_ros_command(commands: List):
+    return build_command([SOURCE_CMD] + commands)
 
-def main():
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument("--address", dest="address")
-    args = parser.parse_args()
-
-    ssh = paramiko.SSHClient()
-    ssh.connect(AT_SUBNET + args.address, username="pi", password="r00t")
-
-    ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command("chromium-browser")
+def run_command_listener(address: str):
+    cmd = build_ros_command(["cd ~/catkin_ws", "source devel/setup.sh", "roslaunch turtlebot3_bringup turtlebot3_robot.launch"])
+    run_command_in_session("pi", "turtlebot", cmd, address)

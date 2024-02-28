@@ -7,3 +7,12 @@
 [submodule "Robot_Controller"]
 	path = src/robot_controller
 	url = git@github.com:SDP-Group-8/Robot_Controller.git
+[submodule "src/opencv"]
+	path = src/opencv
+	url = https://github.com/opencv/opencv-python.git
+[submodule "src/pyav"]
+	path = src/pyav
+	url = git@github.com:PyAV-Org/PyAV.git
+[submodule "src/stream_client"]
+	path = src/stream_client
+	url = git@github.com:SDP-Group-8/Stream_Client.git
