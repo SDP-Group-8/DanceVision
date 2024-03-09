@@ -1,12 +1,12 @@
 [submodule "Pose_Tracking"]
 	path = src/pose_tracking
-	url = https://github.com/SDP-Group-8/Pose_Tracking.git
+	url = git@github.com:SDP-Group-8/Pose_Tracking.git
 [submodule "DanceVision_App"]
 	path = src/dancevision_app
-	url = https://github.com/SDP-Group-8/DanceVision_App.git
+	url = git@github.com:SDP-Group-8/DanceVision_App.git
 [submodule "Robot_Controller"]
 	path = src/robot_controller
-	url = https://github.com/SDP-Group-8/Robot_Controller.git
+	url = git@github.com:SDP-Group-8/Robot_Controller.git
 [submodule "src/opencv"]
 	path = src/opencv
-	url = https://github.com/opencv/opencv-python.git
+	url = git@github.com:opencv/opencv-python.git
