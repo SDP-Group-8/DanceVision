@@ -16,3 +16,6 @@
 [submodule "src/aiortc"]
 	path = src/aiortc
 	url = git@github.com:aiortc/aiortc.git
+[submodule "src/opencv"]
+	path = src/opencv
+	url = git@github.com:opencv/opencv-python.git
