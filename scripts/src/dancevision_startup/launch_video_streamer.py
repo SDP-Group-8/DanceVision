@@ -16,7 +16,7 @@ def launch_server(local_address, address, port):
     cmd = build_command(
         [
             "cd ~/Stream_Client",
-            f"echo 'const ADDRESS = ${local_address}' > address.js",
+            f"echo 'const ADDRESS = \"{local_address}\"' > address.js",
             f"python3 -m http.server {port}"
         ]
     )
