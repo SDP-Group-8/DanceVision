@@ -7,6 +7,6 @@
 [submodule "Robot_Controller"]
 	path = src/robot_controller
 	url = git@github.com:SDP-Group-8/Robot_Controller.git
-[submodule "src/opencv"]
-	path = src/opencv
-	url = git@github.com:opencv/opencv-python.git
+[submodule "src/base-opencv"]
+	path = src/base-opencv
+	url = git@github.com:opencv/opencv.git
