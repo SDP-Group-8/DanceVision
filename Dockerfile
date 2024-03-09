@@ -2,7 +2,11 @@ FROM ros:noetic-robot
 
 SHELL ["/bin/bash", "-c"]
 
-ADD . /dancevision
+ADD scripts/opencv-build-script.sh /dancevision/scripts/opencv-build-script.sh
+ADD src/base-opencv /dancevision/src/base-opencv
+
+ADD src/dancevision_app /dancevision/src/dancevision_app
+ADD src/pose_tracking /dancevision/src/pose_tracking
 
 WORKDIR /dancevision
 
@@ -19,4 +23,4 @@ WORKDIR /opencv-build
 RUN sh /dancevision/scripts/opencv-build-script.sh /ffmpeg /dancevision/src/base-opencv && make -j4
 RUN cd python_loader && python3 setup.py develop
 RUN pip3 install --upgrade numpy
-RUN pip3 install src/pose_tracking/ src/dancevision_app/server/
+RUN pip3 install /dancevision/src/pose_tracking/ /dancevision/src/dancevision_app/server/

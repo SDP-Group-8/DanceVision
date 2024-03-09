@@ -12,10 +12,11 @@ def launch_chromium(address, port):
     )
     run_command_in_session(pi_username, pi_password, cmd, address)
 
-def launch_server(address, port):
+def launch_server(local_address, address, port):
     cmd = build_command(
         [
             "cd ~/Stream_Client",
+            f"echo 'const ADDRESS = ${local_address}' > address.js",
             f"python3 -m http.server {port}"
         ]
     )
