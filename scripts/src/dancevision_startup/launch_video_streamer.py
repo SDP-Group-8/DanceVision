@@ -1,4 +1,6 @@
 from dancevision_startup.commands import build_command, run_command_in_session
+import subprocess
+from pathlib import Path
 
 pi_username = "pi"
 pi_password = "raspberry"
@@ -21,3 +23,6 @@ def launch_server(local_address, address, port):
         ]
     )
     run_command_in_session(pi_username, pi_password, cmd, address)
+
+def launch_video_streamer(script_location: Path, address: str, port: int):
+    subprocess.run(["sh", script_location / "startup_video_streamer.sh", address, port])
