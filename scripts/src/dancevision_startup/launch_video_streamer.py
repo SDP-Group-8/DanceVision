@@ -1,6 +1,8 @@
+import argparse
+from multiprocessing import Process
+
 from dancevision_startup.commands import build_command, run_command_in_session
-import subprocess
-from pathlib import Path
+from dancevision_startup.get_hostname import get_hostname
 
 pi_username = "pi"
 pi_password = "raspberry"
@@ -24,5 +26,18 @@ def launch_server(local_address, address, port):
     )
     run_command_in_session(pi_username, pi_password, cmd, address)
 
-def launch_video_streamer(script_location: Path, address: str, port: int):
-    subprocess.run(["sh", script_location / "startup_video_streamer.sh", address, port])
+def launch_video_streamer(address, port):
+    hostname = get_hostname()
+    p1 = Process(target = launch_chromium, args=(address, port))
+    p2 = Process(target = launch_server, args=(hostname, address, port))
+
+    p1.start()
+    p2.start()
+ 
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--address")
+    parser.add_argument("--port")
+    args = parser.parse_args()
+
+    launch_video_streamer(args.address, args.port)
