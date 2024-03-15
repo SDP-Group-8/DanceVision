@@ -3,14 +3,6 @@ from dancevision_startup.launch_command_listener import launch_command_listener
 
 import argparse
 
-def line_buffered(f):
-    line_buf = ""
-    while not f.channel.exit_status_ready():
-        line_buf += bytes.decode(f.read(1))
-        if line_buf.endswith('\n'):
-            yield line_buf
-            line_buf = ""
-
 def main():
     parser = argparse.ArgumentParser()
 

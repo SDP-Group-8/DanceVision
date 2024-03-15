@@ -23,13 +23,15 @@ def run_command_listener(address: str):
     return run_command_in_session(turtle_username, turtle_password, cmd, address)
 
 def launch_command_listener(address):
-    wheels_listener = run_wheels_listener(address)
-    command_listener = run_command_listener(address)
-    return wheels_listener, command_listener
+    wheels = run_wheels_listener(address)
+    actuator = run_command_listener(address)
+    return wheels, actuator
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--address")
     args = parser.parse_args()
 
-    launch_command_listener(args.address)
+    wheels, actuator = launch_command_listener(args.address)
+    stdin, stdout, stderr = wheels
+    stdout.readlines()

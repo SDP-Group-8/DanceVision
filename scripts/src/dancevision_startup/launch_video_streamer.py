@@ -31,14 +31,11 @@ def launch_server(local_address, address, port, on_command: Callable):
     stdin, stdout, stderr = run_command_in_session(pi_username, pi_password, cmd, address)
     on_command(stdin, stdout, stderr)
 
-def launch_video_streamer(address, port):
+def launch_video_streamer(address, port, callable):
     hostname = get_hostname()
 
-    def read_output(stdin, stdout, stderr):
-        stdout.readlines()
-
-    p1 = Process(target = launch_chromium, args=(address, port, read_output))
-    p2 = Process(target = launch_server, args=(hostname, address, port, read_output))
+    p1 = Process(target = launch_chromium, args=(address, port, callable))
+    p2 = Process(target = launch_server, args=(hostname, address, port, callable))
 
     p1.start()
     p2.start()
@@ -49,4 +46,7 @@ def main():
     parser.add_argument("--port")
     args = parser.parse_args()
 
-    launch_video_streamer(args.address, args.port)
+    def read_output(stdin, stdout, stderr):
+        stdout.readlines()
+
+    launch_video_streamer(args.address, args.port, read_output)
