@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dancevision_startup"
+version = "0.0.1"
+dependencies = [
+    "paramiko"
+]
+
+description = "Package for Pose Estimation"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.scripts]
+launch_video_streamer = "dancevision_startup.launch_video_streamer:main"
+launch_command_listener = "dancevision_startup.launch_command_listener:main"
+startup_server = "dancevision_startup.startup_server:main"
+full_startup = "dancevision_startup.full_startup:main"
+
+[project.urls]
+Homepage = "https://github.com/SDP-Group-8/DanceVision"
+Issues = "https://github.com/SDP-Group-8/DanceVision/issues"
