@@ -2,7 +2,7 @@ FROM ros:noetic-robot
 
 SHELL ["/bin/bash", "-c"]
 
-ADD scripts/opencv-build-script.sh /dancevision/scripts/opencv-build-script.sh
+ADD scripts /dancevision/scripts
 ADD src/base-opencv /dancevision/src/base-opencv
 
 ADD src/dancevision_app /dancevision/src/dancevision_app
