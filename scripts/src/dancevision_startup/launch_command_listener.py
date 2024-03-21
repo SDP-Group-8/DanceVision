@@ -12,7 +12,7 @@ def build_ros_command(commands: List, address: str):
     set_ros_uri = f"export ROS_MASTER_URI=http://{address}:11311"
     set_domain_id = f"export ROS_HOSTNAME={address}"
     
-    return build_command([SOURCE_CMD, set_ros_uri, set_domain_id, "cd ~/catkin_ws", "source devel/setup.sh"] + commands)
+    return build_command([SOURCE_CMD, set_ros_uri, set_domain_id, "cd /home/pi/catkin_ws", "source devel/setup.sh"] + commands)
 
 def run_wheels_listener(address: str):
     cmd = build_ros_command(["roslaunch turtlebot3_bringup turtlebot3_robot.launch"], address)
@@ -20,7 +20,7 @@ def run_wheels_listener(address: str):
 
 def run_command_listener(address: str):
     cmd = build_ros_command(["rosrun control_listener run_listener"], address)
-    return run_command_in_session(turtle_username, turtle_password, cmd, address)
+    return run_command_in_session("root", "raspberry", cmd, address)
 
 def launch_command_listener(address):
     wheels = run_wheels_listener(address)
@@ -33,5 +33,5 @@ def main():
     args = parser.parse_args()
 
     wheels, actuator = launch_command_listener(args.address)
-    stdin, stdout, stderr = wheels
-    stdout.readlines()
+    stdin, stdout, stderr = actuator
+    print(stdout.readlines())

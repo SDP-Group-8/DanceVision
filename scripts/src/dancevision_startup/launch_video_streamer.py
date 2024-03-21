@@ -5,8 +5,6 @@ from multiprocessing import Process
 from dancevision_startup.commands import build_command, run_command_in_session
 from dancevision_startup.get_hostname import get_hostname
 
-import sys
-
 pi_username = "pi"
 pi_password = "raspberry"
 
@@ -39,6 +37,8 @@ def launch_video_streamer(address, port, callable):
 
     p1.start()
     p2.start()
+
+    return p1, p2
 
 def main():
     parser = argparse.ArgumentParser()
