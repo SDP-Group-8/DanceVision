@@ -1,9 +1,7 @@
 from typing import List
 import argparse
 
-from dancevision_startup.commands import build_command, run_command_in_session
-
-SOURCE_CMD = "source /opt/ros/noetic/setup.bash"
+from dancevision_startup.commands import build_command, run_command_in_session, SOURCE_CMD, WORKSPACE_SOURCE_CMD
 
 turtle_username = "pi"
 turtle_password = "raspberry"
@@ -12,7 +10,7 @@ def build_ros_command(commands: List, address: str):
     set_ros_uri = f"export ROS_MASTER_URI=http://{address}:11311"
     set_domain_id = f"export ROS_HOSTNAME={address}"
     
-    return build_command([SOURCE_CMD, set_ros_uri, set_domain_id, "cd /home/pi/catkin_ws", "source devel/setup.sh"] + commands)
+    return build_command([SOURCE_CMD, set_ros_uri, set_domain_id, "cd /home/pi/catkin_ws", WORKSPACE_SOURCE_CMD] + commands)
 
 def run_wheels_listener(address: str):
     cmd = build_ros_command(["roslaunch turtlebot3_bringup turtlebot3_robot.launch"], address)
