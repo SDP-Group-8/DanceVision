@@ -2,8 +2,15 @@ from dancevision_startup.startup_server import startup_server
 from dancevision_startup.launch_command_listener import launch_command_listener
 from dancevision_startup.launch_planner import run_planner
 
+from functools import partial
+from multiprocessing import Queue
+
 import argparse
 import time
+import signal
+
+def signal_handler(queue, sig, frame):
+    queue.put(True)
 
 def main():
     parser = argparse.ArgumentParser()
@@ -28,7 +35,9 @@ def main():
     # Why is this still needed?
     time.sleep(5)
 
-    p = run_planner(args.turtle_address)
+    queue = Queue()
+    p = run_planner(args.turtle_address, queue)
+    signal.signal(signal.SIGINT, partial(signal_handler, queue))
 
     p.start()
     backend.start()
